@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitSheet — Seu treino virou app</title>
+<meta name="description" content="Treinos interativos com GIF de cada exercício, registro de cargas e evolução. Direto no seu celular.">
+<meta name="theme-color" content="#d4687a">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#fdf4f5;--card:#fff;--border:#f0c8ce;--border2:#fce8ec;
+  --primary:#d4687a;--pl:#fdf0f2;--pb:#f5d6db;
+  --text:#1a1a1a;--text2:#9a7070;--text3:#c4909a;--text4:#c45568;
+  --font:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:var(--font);color:var(--text)}
+.wrap{max-width:430px;margin:0 auto;padding:28px 20px 48px}
+.logo{font-size:13px;font-weight:900;letter-spacing:5px;text-transform:uppercase;color:var(--text4);text-align:center}
+
+/* HERO */
+.hero{margin-top:34px;text-align:center}
+h1{font-size:37px;font-weight:900;letter-spacing:-1px;line-height:1.06}
+h1 em{font-style:normal;color:var(--primary)}
+.hero-sub{margin-top:12px;font-size:15px;color:var(--text2);line-height:1.5}
+
+/* animated demo card */
+.demo-card{margin:26px auto 0;text-align:left;background:var(--card);border:2px solid var(--border);border-radius:18px;padding:16px;box-shadow:0 18px 40px rgba(90,40,52,.10)}
+.dc-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.dc-name{font-size:16px;font-weight:800}
+.dc-group{font-size:12px;color:var(--text2);margin-top:2px}
+.dc-play{width:38px;height:38px;border-radius:11px;background:var(--pl);border:2px solid var(--pb);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.dc-tbl{width:100%;margin-top:12px;border-collapse:collapse}
+.dc-tbl th{font-size:9px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--text3);text-align:left;padding-bottom:6px}
+.dc-tbl td{font-size:14px;font-weight:600;padding:6px 0;border-top:2px solid var(--border2)}
+.pill{display:inline-block;background:var(--pl);border:2px solid var(--pb);color:#b03050;font-size:10px;font-weight:800;padding:2px 8px;border-radius:20px}
+.carga{background:var(--pl);border-radius:8px;padding:3px 10px;font-weight:800;color:var(--text4)}
+.dc-timer{margin-top:12px;background:var(--primary);color:#fff;border-radius:11px;text-align:center;font-size:13px;font-weight:800;padding:10px;letter-spacing:.4px}
+
+.cta-row{margin-top:24px;display:flex;flex-direction:column;gap:10px}
+.btn{display:block;text-align:center;text-decoration:none;font-weight:800;font-size:15px;border-radius:14px;padding:16px;font-family:var(--font)}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--text4)}
+.btn:active{opacity:.85}
+
+/* FEATURES */
+.features{margin-top:34px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.feat{background:var(--card);border:2px solid var(--border);border-radius:14px;padding:14px}
+.feat b{display:block;font-size:13px;font-weight:800}
+.feat span{font-size:12px;color:var(--text2);line-height:1.4;display:block;margin-top:3px}
+.feat .ico{font-size:20px;margin-bottom:6px;display:block}
+
+/* LIBRARY highlight */
+.lib{margin-top:38px;background:var(--primary);border-radius:20px;padding:26px 22px;color:#fff}
+.lib-tag{font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;opacity:.85}
+.lib h2{font-size:26px;font-weight:900;letter-spacing:-.5px;margin-top:6px}
+.lib-list{margin-top:14px;font-size:14px;line-height:1.85}
+.lib-price{margin-top:16px;display:flex;align-items:baseline;gap:8px}
+.lib-price b{font-size:32px;font-weight:900}
+.lib-price span{font-size:13px;opacity:.85}
+.lib .btn{margin-top:16px;background:#fff;color:var(--text4)}
+.lib-note{margin-top:10px;font-size:12px;text-align:center;opacity:.85}
+
+/* SINGLES */
+.sec-title{margin-top:40px;text-align:center}
+.sec-title h2{font-size:22px;font-weight:900;letter-spacing:-.3px}
+.sec-title p{font-size:14px;color:var(--text2);margin-top:6px}
+.cats{margin-top:18px;display:flex;flex-direction:column;gap:10px}
+.cat{background:var(--card);border:2px solid var(--border);border-radius:16px;padding:16px}
+.cat-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.cat b{font-size:15px;font-weight:800}
+.cat-price{font-size:13px;font-weight:800;color:var(--text4);white-space:nowrap}
+.cat p{font-size:12.5px;color:var(--text2);line-height:1.45;margin-top:5px}
+.cat .btn{margin-top:12px;padding:12px;font-size:13px}
+
+/* FAQ */
+.faq{margin-top:40px}
+.faq h2{font-size:22px;font-weight:900;text-align:center;letter-spacing:-.3px;margin-bottom:14px}
+details{background:var(--card);border:2px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:8px}
+summary{font-size:14px;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:'+';font-size:18px;color:var(--primary);font-weight:800}
+details[open] summary::after{content:'–'}
+details p{font-size:13px;color:var(--text2);line-height:1.55;margin-top:10px}
+
+footer{margin-top:44px;text-align:center;font-size:13px;color:var(--text2)}
+footer a{color:var(--text4);font-weight:700;text-decoration:none}
+.foot-logo{font-size:11px;font-weight:900;letter-spacing:4px;text-transform:uppercase;color:var(--text3);margin-top:8px}
+
+button.btn{width:100%;border:none;cursor:pointer}
+.btn[data-soon]{opacity:.55;pointer-events:none}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--primary);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo">FitSheet</div>
+
+  <section class="hero">
+    <h1>Menos achismo,<br>mais <em>ciência</em>.</h1>
+    <p class="hero-sub">Treinos interativos que abrem como um app no seu celular — com GIF de cada exercício, registro de cargas e evolução.</p>
+
+    <div class="demo-card" aria-hidden="true">
+      <div class="dc-top">
+        <div>
+          <div class="dc-name">Elevação pélvica na máquina</div>
+          <div class="dc-group">Glúteos · Posteriores</div>
+        </div>
+        <div class="dc-play">▶</div>
+      </div>
+      <table class="dc-tbl">
+        <tr><th>Série</th><th>Reps</th><th style="text-align:right">Carga</th></tr>
+        <tr><td><span class="pill">PC</span></td><td>10</td><td style="text-align:right"><span class="carga">40 kg</span></td></tr>
+        <tr><td><span class="pill">PC</span></td><td>10</td><td style="text-align:right"><span class="carga" id="demo-carga">…</span></td></tr>
+      </table>
+      <div class="dc-timer">descanso · <span id="demo-timer">0:60</span></div>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" id="link-demo" href="fitsheet-demo.html">Testar grátis agora</a>
+      <a class="btn btn-ghost" href="#treinos">Ver os treinos</a>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feat"><span class="ico">🎬</span><b>GIF de cada exercício</b><span>Toque e veja a execução certa.</span></div>
+    <div class="feat"><span class="ico">✍️</span><b>Cargas salvas</b><span>O app lembra o peso da última sessão.</span></div>
+    <div class="feat"><span class="ico">⏱️</span><b>Timer de descanso</b><span>Direto na série, sem sair do treino.</span></div>
+    <div class="feat"><span class="ico">📈</span><b>Sua evolução</b><span>Gráfico do progresso de cada exercício.</span></div>
+  </section>
+
+  <section class="lib" id="biblioteca">
+    <div class="lib-tag">Acesso completo</div>
+    <h2>Biblioteca FitSheet</h2>
+    <div class="lib-list">
+      ✔ 52 programas de treino<br>
+      ✔ Corpo Equilibrado (2x a 5x por semana)<br>
+      ✔ Versões com abdômen<br>
+      ✔ Foco em Glúteos, Coxas, Ombros e Costas<br>
+      ✔ Treinos novos entram sem custo extra
+    </div>
+    <div class="lib-price"><b>R$ 49,90</b><span>pagamento único</span></div>
+    <a class="btn" id="link-biblioteca" href="#">Quero a biblioteca completa</a>
+    <div class="lib-note">Acesso imediato após a compra</div>
+  </section>
+
+  <div class="sec-title" id="treinos">
+    <h2>Ou escolha um foco</h2>
+    <p>Cada pacote traz todas as frequências (2x a 5x por semana) do seu objetivo. <b>R$ 19,90</b> cada.</p>
+  </div>
+
+  <div class="cats">
+    <div class="cat">
+      <div class="cat-head"><b>Corpo Equilibrado</b><span class="cat-price">R$ 19,90</span></div>
+      <p>Volume igual para o corpo todo. Ideal para evoluir de forma harmônica.</p>
+      <a class="btn btn-primary" id="link-corpo-equilibrado" href="#">Comprar</a>
+    </div>
+    <div class="cat">
+      <div class="cat-head"><b>Corpo Equilibrado + Abdômen</b><span class="cat-price">R$ 19,90</span></div>
+      <p>A mesma base equilibrada, com abdômen incluído nas sessões.</p>
+      <a class="btn btn-primary" id="link-corpo-equilibrado-abs" href="#">Comprar</a>
+    </div>
+    <div class="cat">
+      <div class="cat-head"><b>Foco em Glúteos + Ombros</b><span class="cat-price">R$ 19,90</span></div>
+      <p>Mais volume e intensidade em glúteos e ombros, mantendo o resto em dia.</p>
+      <a class="btn btn-primary" id="link-gluteos-ombros" href="#">Comprar</a>
+    </div>
+    <div class="cat">
+      <div class="cat-head"><b>Foco em Glúteos + Dorsais</b><span class="cat-price">R$ 19,90</span></div>
+      <p>Mais volume e intensidade em glúteos e costas, mantendo o resto em dia.</p>
+      <a class="btn btn-primary" id="link-gluteos-dorsais" href="#">Comprar</a>
+    </div>
+    <div class="cat">
+      <div class="cat-head"><b>Foco em Coxas + Ombros</b><span class="cat-price">R$ 19,90</span></div>
+      <p>Mais volume e intensidade em coxas e ombros, mantendo o resto em dia.</p>
+      <a class="btn btn-primary" id="link-coxas-ombros" href="#">Comprar</a>
+    </div>
+    <div class="cat">
+      <div class="cat-head"><b>Foco em Coxas + Dorsais</b><span class="cat-price">R$ 19,90</span></div>
+      <p>Mais volume e intensidade em coxas e costas, mantendo o resto em dia.</p>
+      <a class="btn btn-primary" id="link-coxas-dorsais" href="#">Comprar</a>
+    </div>
+  </div>
+
+  <section class="faq">
+    <h2>Perguntas frequentes</h2>
+    <details>
+      <summary>Preciso baixar algo da loja de aplicativos?</summary>
+      <p>Não. Você recebe um link que abre no navegador do seu celular. Se quiser, toca em "adicionar à tela de início" e ele vira um app com ícone — funciona no iPhone e no Android.</p>
+    </details>
+    <details>
+      <summary>Como recebo o acesso?</summary>
+      <p>Assim que o pagamento é confirmado, você recebe o link de acesso automaticamente. É só abrir e começar a treinar.</p>
+    </details>
+    <details>
+      <summary>Sou iniciante, vou saber usar?</summary>
+      <p>Vai. Cada exercício tem GIF de execução, cada técnica tem explicação, e se um aparelho estiver ocupado você toca no botão de substituição e troca por um exercício equivalente.</p>
+    </details>
+    <details>
+      <summary>E se eu trocar de celular?</summary>
+      <p>Seu acesso pelo link continua valendo. O histórico de cargas fica salvo no aparelho, então ao trocar de celular você recomeça o registro — o treino em si não se perde.</p>
+    </details>
+  </section>
+
+  <footer>
+    Dúvidas? Me chama no <a id="link-instagram" href="#">Instagram</a>
+    <div class="foot-logo">FitSheet</div>
+  </footer>
+</div>
+
+<script>
+/* ============================================================
+   EDITE AQUI — cole os links de checkout da Hotmart quando criar
+   os produtos. Enquanto um link estiver vazio (''), o botão
+   correspondente aparece como "Em breve".
+   ============================================================ */
+var CONFIG = {
+  demo: 'fitsheet-demo.html',
+  biblioteca: 'https://pay.hotmart.com/P106831967T',
+  avulsos: {
+    'corpo-equilibrado': 'https://pay.hotmart.com/X106860265P',
+    'corpo-equilibrado-abs': 'https://pay.hotmart.com/V106860472I',
+    'gluteos-ombros': 'https://pay.hotmart.com/S106860574H',
+    'gluteos-dorsais': 'https://pay.hotmart.com/Q106860638T',
+    'coxas-ombros': 'https://pay.hotmart.com/A106860713I',
+    'coxas-dorsais': 'https://pay.hotmart.com/C106860740X'
+  },
+  instagram: 'https://www.instagram.com/fitsheetapp/'
+};
+
+function setLink(id, url){
+  var el = document.getElementById(id);
+  if(!el) return;
+  if(url){ el.href = url; }
+  else { el.removeAttribute('href'); el.setAttribute('data-soon',''); el.textContent = 'Em breve'; }
+}
+setLink('link-demo', CONFIG.demo);
+setLink('link-biblioteca', CONFIG.biblioteca);
+Object.keys(CONFIG.avulsos).forEach(function(k){ setLink('link-' + k, CONFIG.avulsos[k]); });
+setLink('link-instagram', CONFIG.instagram);
+
+/* hero demo animation: typing weight + counting rest timer */
+(function(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.getElementById('demo-carga').textContent = '45 kg';
+    return;
+  }
+  var carga = document.getElementById('demo-carga');
+  var timer = document.getElementById('demo-timer');
+  var t = 60;
+  function tickTimer(){
+    t -= 1;
+    if(t < 40){ t = 60; }
+    timer.textContent = '0:' + (t < 10 ? '0' + t : t);
+  }
+  setInterval(tickTimer, 1000);
+  var states = ['…', '4', '45', '45 kg'];
+  var i = 0;
+  setInterval(function(){
+    i = (i + 1) % (states.length + 3);
+    carga.textContent = states[Math.min(i, states.length - 1)];
+  }, 700);
+})();
+</script>
+</body>
+</html>
